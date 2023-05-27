@@ -1,10 +1,128 @@
-.primary-button{
-    background-color: blue;
-    color: white;
+.ds-button{
+    font-family: "Work Sans", "Nunito Sans", sans-serif;
+    font-weight: 500;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    //primary
+    &--primary{
+        color: var(--white);
+        background-color: var(--button-primary-default);
+        border: 2px solid var(--disabled-background);
+        border-radius: 4px;
+        &:hover{
+            background-color: var(--button-primary-hover);
+        }
+        &:active{
+            background-color: var(--button-primary-pressed);
+        }
+        &:disabled{
+            cursor: not-allowed;
+            color: var(--text-disabled);
+            background-color: var(--button-primary-disabled);
+            box-shadow: none;
+            user-select: none;
+        }
+    }
+
+    //seconday
+    &--secondary{
+        color: var(--secondary-color);
+        background-color: var(--white);
+        border: 1px solid var(--button-secondary-border-color);
+        border-radius: 4px;
+        &:hover{
+            background-color: var(--button-secondary-hover);
+        }
+        &:active{
+            background-color: var(--button-secondary-pressed);
+        }
+        &:disabled{
+            cursor: not-allowed;
+            box-shadow: none;
+            user-select: none;
+            background-color: var(--disabled-background);
+            border: var(--disabled-border);
+            color: var(--text-disabled);
+        }
+    }
+
+    //tertiary
+    .ds-button-tertiary {
+        color: var(--text-default);
+        background-color: var(--surface-transparent);
+        border: 2px solid var(--surface-transparent);
+        &:hover{
+            background-color: var(--button-teritiary-hover-tag);
+        }
+        &:active{
+            background-color: var(--button-tertiary-active-tag);
+        }
+        &:disabled{
+            cursor: not-allowed;
+            box-shadow: none;
+            color: var(--text-disabled);
+            background: var(--disabled-background);
+            user-select: none;
+        }
+    }
+    &--loading{
+        color: transparent;
+        pointer-events: none;
+        *{
+            visibility: hidden;
+            opacity: 0;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            width: 1em;
+            height: 1em;
+            left: calc(50% - (1em * .5));
+            top: calc(50% - (1em * .5));
+            margin: auto;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s infinite linear;
+        }
+    
+    }
+
+}
+.ds-button:focus-visible{
+    outline: 2px solid var(--interation-focused);
+}
+.ds-button .ds-button-label{
     padding: 8px;
-    border: none;
-    border-radius: 8px;
-    &:hover{
-        background-color: #3c3cf2;
+    line-height: 16px;
+    text-align: center;
+}
+
+//SIZE
+.ds-button--large{
+    height: 40px;
+}
+
+.ds-button--medium{
+    height: 32px;
+}
+
+.ds-button--small{
+    height: 28px;
+}
+
+@keyframes button-loading-spinner {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(359deg);
     }
 }
